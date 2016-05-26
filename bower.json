@@ -7,7 +7,8 @@
     "angular-cookies": "^1.4.0",
     "angular-resource": "^1.4.0",
     "angular-route": "^1.4.0",
-    "angular-sanitize": "^1.4.0"
+    "angular-sanitize": "^1.4.0",
+    "kendo-ui": "https://bower.telerik.com/bower-kendo-ui.git#^2016.1.420"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
@@ -20,6 +21,15 @@
         "less/bootstrap.less",
         "dist/css/bootstrap.css",
         "dist/js/bootstrap.js"
+      ]
+    },
+    "kendo-ui": {
+      "main": [
+        "js/kendo.all.min.js",
+        "js/cultures/kendo.culture.fr-FR.min.js",
+        "js/messages/kendo.messages.fr-FR.min.js",
+        "styles/kendo.common.min.css",
+        "styles/kendo.default.min.css"
       ]
     }
   }

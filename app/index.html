@@ -9,6 +9,8 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/kendo-ui/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="bower_components/kendo-ui/styles/kendo.default.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -36,12 +38,11 @@
             <a class="navbar-brand" href="#/">lightStore</a>
           </div>
 
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+          <div class="collapse navbar-collapse" id="js-navbar-collapse" ng-controller="HeadermenuCtrl">
 
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
+              <li ng-class="{active: isActive('/')}"><a href="#/">Home</a></li>
+              <li ng-class="{active: isActive('/login')}"><a ng-href="#/login">login</a></li>
             </ul>
           </div>
         </div>
@@ -79,6 +80,9 @@
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/kendo-ui/js/kendo.all.min.js"></script>
+    <script src="bower_components/kendo-ui/js/cultures/kendo.culture.fr-FR.min.js"></script>
+    <script src="bower_components/kendo-ui/js/messages/kendo.messages.fr-FR.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -86,6 +90,9 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/services/authenticationservice.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/headermenu.js"></script>
         <!-- endbuild -->
 </body>
 </html>
