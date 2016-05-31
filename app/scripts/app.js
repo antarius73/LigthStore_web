@@ -17,6 +17,10 @@ angular
     'kendo.directives'
   ])
   .constant('WCF_URL_BASE', 'https://svr-grind.tesfri.intra:8084')
+  .config(['$resourceProvider', function ($resourceProvider) {
+    // Don't strip trailing slashes from calculated URLs
+    $resourceProvider.defaults.stripTrailingSlashes = false;
+  }])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -33,6 +37,16 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         controllerAs: 'login'
+      })
+      .when('/profil', {
+        templateUrl: 'views/profil.html',
+        controller: 'ProfilCtrl',
+        controllerAs: 'profil'
+      })
+      .when('/updatepsw', {
+        templateUrl: 'views/updatepsw.html',
+        controller: 'UpdatepswCtrl',
+        controllerAs: 'updatepsw'
       })
       .otherwise({
         redirectTo: '/'

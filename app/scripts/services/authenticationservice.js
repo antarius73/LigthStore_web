@@ -15,11 +15,13 @@ angular.module('lightStoreApp')
         var service = {};
 
         service.Login = function (username, password, callback) {
+          password="";
+          console.log(JSON.stringify({Login: username, Password: password}));
 
           var req = {
-            method: 'POST',
-            url: WCF_URL_BASE + '/Login/',
-            headers: {'Content-Type': 'application/json', 'Authorization': 'Basic Og=='},
+            method: 'PUT',
+            url: WCF_URL_BASE + '/Login/log/',
+            headers: {'Content-Type': 'application/json'},
             data: JSON.stringify({Login: username, Password: password})
           };
 
@@ -28,13 +30,17 @@ angular.module('lightStoreApp')
            ----------------------------------------------*/
           var person;
           $http(req).then(function (data) {
+            console.log("titi");
             person = data;
             if (person !== null) {
+              console.log("titi2");
               callback({success: true});
             } else {
+              console.log("titi3");
               callback({success: false, message: 'Username or password is incorrect'});
             }
           }, function (error) {
+            console.log("titi4");
             var message = 'Service call failed';
             if (!!error && !!error.statusText) message += ' ' + error.statusText;
             if (!!error && !!error.status) message += ' ( ' + error.status + ')';
@@ -45,7 +51,7 @@ angular.module('lightStoreApp')
 
         service.SetCredentials = function (username, password) {
           var authdata = Base64.encode(username + ':' + password);
-
+          console.log("titi5");
           $rootScope.globals = {
             currentUser: {
               username: username,
@@ -58,6 +64,7 @@ angular.module('lightStoreApp')
         };
 
         service.ClearCredentials = function () {
+          console.log("titi6");
           $rootScope.globals = {};
           $cookieStore.remove('globals');
           $http.defaults.headers.common.Authorization = 'Basic ';
@@ -67,6 +74,7 @@ angular.module('lightStoreApp')
       }])
 
   .factory('Base64', function () {
+    console.log("titi7");
     /* jshint ignore:start */
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';

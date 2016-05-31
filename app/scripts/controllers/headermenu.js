@@ -10,7 +10,7 @@
 angular.module('lightStoreApp')
   .controller('HeadermenuCtrl', function ($scope, $location) {
   $scope.isActive = function (viewLocation){
-    console.log("header "+viewLocation+ "=== "+$location.path());
+   // console.log("header "+viewLocation+ "=== "+$location.path());
     return viewLocation === $location.path();
 
 
