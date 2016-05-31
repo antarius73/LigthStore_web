@@ -30,6 +30,7 @@ module.exports = function(config) {
       'bower_components/kendo-ui/js/kendo.all.min.js',
       'bower_components/kendo-ui/js/cultures/kendo.culture.fr-FR.min.js',
       'bower_components/kendo-ui/js/messages/kendo.messages.fr-FR.min.js',
+      'bower_components/angular-recaptcha/release/angular-recaptcha.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

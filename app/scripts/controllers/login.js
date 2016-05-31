@@ -41,4 +41,24 @@ angular.module('lightStoreApp')
     };
 
 
+    $scope.response = null;
+    $scope.widgetId = null;
+    $scope.model = {
+      key: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+    };
+    $scope.setResponse = function (response) {
+      console.info('Response available');
+      $scope.response = response;
+    };
+    $scope.setWidgetId = function (widgetId) {
+      console.info('Created widget ID: %s', widgetId);
+      $scope.widgetId = widgetId;
+    };
+    $scope.cbExpiration = function() {
+      console.info('Captcha expired. Resetting response object');
+      vcRecaptchaService.reload($scope.widgetId);
+      $scope.response = null;
+    };
+
+
   });

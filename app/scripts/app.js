@@ -14,7 +14,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'kendo.directives'
+    'kendo.directives',
+    'vcRecaptcha'
   ])
   .constant('WCF_URL_BASE', 'https://svr-grind.tesfri.intra:8084')
   .config(['$resourceProvider', function ($resourceProvider) {
