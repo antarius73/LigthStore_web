@@ -15,7 +15,7 @@ angular.module('lightStoreApp')
         var service = {};
 
         service.Login = function (username, password, callback) {
-          password="";
+          if(!angular.isDefined(password)) password="";
           console.log(JSON.stringify({Login: username, Password: password}));
 
           var req = {
@@ -48,6 +48,41 @@ angular.module('lightStoreApp')
             callback({success: false, message: message});
           });
         };
+
+
+        service.SpotFirstConnection= function(){
+
+          var req = {
+            method: 'PUT',
+            url: WCF_URL_BASE + '/Login/info/',
+            headers: {'Content-Type': 'application/json'},
+            data: JSON.stringify({Login: $rootScope.globals.currentUser.username})
+          };
+
+//          $timeout(function(){
+          /* Use this for real authentication
+           ----------------------------------------------*/
+          var person;
+          $http(req).then(function (data) {
+            console.log("SpotFirstConnection"+data.Id);
+
+            if (data.IsPasswordDefined == false) {
+              console.log("pass word not defined");
+              return false;
+            } else {
+              console.log("password defined");
+              return true;
+            }
+          }, function (error) {
+            console.log("SpotFirstConnection4");
+            var message = 'Service call failed';
+            if (!!error && !!error.statusText) message += ' ' + error.statusText;
+            if (!!error && !!error.status) message += ' ( ' + error.status + ')';
+
+
+          });
+
+        }
 
         service.SetCredentials = function (username, password) {
           var authdata = Base64.encode(username + ':' + password);
