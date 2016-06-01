@@ -57,7 +57,7 @@ angular.module('lightStoreApp')
       key: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
     };
     $scope.setResponse = function (response) {
-      console.info('Response available');
+      console.info('Response available'+response);
       $scope.response = response;
     };
     $scope.setWidgetId = function (widgetId) {
