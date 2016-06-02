@@ -33,7 +33,7 @@ angular.module('lightStoreApp')
         if (response.success) {
 
           // recuperer l'id
-          console.log("id:"+response.Id);
+          //console.log("id:"+response.Id);
           AuthenticationService.SetCredentials($scope.username, $scope.password, response.Id);
 
           var pswDefined = AuthenticationService.SpotFirstConnection(function (response) {
@@ -73,15 +73,15 @@ angular.module('lightStoreApp')
       key: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
     };
     $scope.setResponse = function (response) {
-      console.info('Response available'+response);
+     // console.info('Response available'+response);
       $scope.response = response;
     };
     $scope.setWidgetId = function (widgetId) {
-      console.info('Created widget ID: %s', widgetId);
+     // console.info('Created widget ID: %s', widgetId);
       $scope.widgetId = widgetId;
     };
     $scope.cbExpiration = function() {
-      console.info('Captcha expired. Resetting response object');
+    //  console.info('Captcha expired. Resetting response object');
       vcRecaptchaService.reload($scope.widgetId);
       $scope.response = null;
     };

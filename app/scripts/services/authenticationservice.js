@@ -15,7 +15,7 @@ angular.module('lightStoreApp')
         var service = {};
 
         service.Login = function (username, password, callback) {
-          console.log(JSON.stringify({Login: username, Password: password}));
+          //console.log(JSON.stringify({Login: username, Password: password}));
 
           var req = {
             method: 'PUT',
@@ -58,14 +58,14 @@ angular.module('lightStoreApp')
            ----------------------------------------------*/
           var person;
           $http(req).then(function (data) {
-            console.log("SpotFirstConnection"+data.Id);
+         //   console.log("SpotFirstConnection"+data.Id);
 
             if (data.data.IsPasswordDefined == false) {
-              console.log("pass word not defined");
+          //    console.log("pass word not defined");
               callback({success: true, IsPasswordDefined:false });
 
             } else {
-              console.log("password defined");
+           //   console.log("password defined");
               callback({success: true, IsPasswordDefined:true });
 
             }

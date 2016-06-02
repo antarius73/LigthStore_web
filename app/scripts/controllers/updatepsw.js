@@ -13,7 +13,7 @@
 
       $scope.updatePsw = function(credential){
 
-        console.log("old one:"+credential.oldPsw+" new one:"+credential.newPsw)
+       // console.log("old one:"+credential.oldPsw+" new one:"+credential.newPsw)
 
             // connection à l'api
         operatorService.SetPsw($rootScope.globals.currentUser.userid, credential.oldPsw, credential.newPsw, function (response) {
