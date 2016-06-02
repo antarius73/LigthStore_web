@@ -28,9 +28,7 @@
         });
       };
 
-        // recuperation de la reponse
 
-        // redirection de l'utilisateur
 
 
 

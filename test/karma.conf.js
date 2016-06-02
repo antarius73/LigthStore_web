@@ -33,6 +33,7 @@ module.exports = function(config) {
       'bower_components/angular-recaptcha/release/angular-recaptcha.js',
       'bower_components/lodash/lodash.js',
       'bower_components/ng-password-strength/dist/scripts/ng-password-strength.js',
+      'bower_components/angular-ui-validate/dist/validate.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
