@@ -15,7 +15,6 @@ angular.module('lightStoreApp')
         var service = {};
 
         service.Login = function (username, password, callback) {
-          if(!angular.isDefined(password)) password="";
           console.log(JSON.stringify({Login: username, Password: password}));
 
           var req = {
@@ -30,27 +29,22 @@ angular.module('lightStoreApp')
            ----------------------------------------------*/
           var person;
           $http(req).then(function (data) {
-            console.log("titi");
-            person = data;
-            if (person !== null) {
-              console.log("titi2");
-              callback({success: true});
+            if (data !== null) {
+              callback({success: true, Id:data.data.Id});
             } else {
-              console.log("titi3");
               callback({success: false, message: 'Username or password is incorrect'});
             }
           }, function (error) {
-            console.log("titi4");
-            var message = 'Service call failed';
-            if (!!error && !!error.statusText) message += ' ' + error.statusText;
-            if (!!error && !!error.status) message += ' ( ' + error.status + ')';
+            var message = 'Service call failed '+error.data.ErrorCode+" message"+error.data.ErrorMessage;
+            console.log("error code : "+error.data.ErrorCode+" message"+error.data.ErrorMessage);
+
 
             callback({success: false, message: message});
           });
         };
 
 
-        service.SpotFirstConnection= function(){
+        service.SpotFirstConnection= function(callback){
 
           var req = {
             method: 'PUT',
@@ -66,31 +60,33 @@ angular.module('lightStoreApp')
           $http(req).then(function (data) {
             console.log("SpotFirstConnection"+data.Id);
 
-            if (data.IsPasswordDefined == false) {
+            if (data.data.IsPasswordDefined == false) {
               console.log("pass word not defined");
-              return false;
+              callback({success: true, IsPasswordDefined:false });
+
             } else {
               console.log("password defined");
-              return true;
+              callback({success: true, IsPasswordDefined:true });
+
             }
           }, function (error) {
-            console.log("SpotFirstConnection4");
-            var message = 'Service call failed';
-            if (!!error && !!error.statusText) message += ' ' + error.statusText;
-            if (!!error && !!error.status) message += ' ( ' + error.status + ')';
+            console.log("error code : "+error.data.ErrorCode+" message"+error.data.ErrorMessage);
 
 
           });
 
         }
 
-        service.SetCredentials = function (username, password) {
+        service.SetCredentials = function (username, password, id) {
+
+          if(!angular.isDefined(password)) password="";
+
           var authdata = Base64.encode(username + ':' + password);
-          console.log("titi5");
           $rootScope.globals = {
             currentUser: {
               username: username,
-              authdata: authdata
+              authdata: authdata,
+              userid : id
             }
           };
 
@@ -99,7 +95,6 @@ angular.module('lightStoreApp')
         };
 
         service.ClearCredentials = function () {
-          console.log("titi6");
           $rootScope.globals = {};
           $cookieStore.remove('globals');
           $http.defaults.headers.common.Authorization = 'Basic ';
@@ -109,7 +104,6 @@ angular.module('lightStoreApp')
       }])
 
   .factory('Base64', function () {
-    console.log("titi7");
     /* jshint ignore:start */
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';

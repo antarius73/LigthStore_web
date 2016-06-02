@@ -8,13 +8,13 @@
 
 
 
-      <div class="form-group" ng-class="{ 'has-error': pswForm.oldPsw.$invalid && pswForm.oldPsw.$dirty }">
+      <div class="form-group" >
         <label for="oldPswInput" class="col-sm-4 control-label">Ancien mot de passe</label>
         <div class="col-sm-8">
           <input type="text" name="oldPsw" class="form-control"
                  ng-model="credential.oldPsw" id="oldPswInput"
-                 placeholder='Ancien mot de passe'  required/>
-          <p class="help-block" ng-if="pswForm.oldPsw.$error.required && pswForm.oldPsw.$dirty">Ancien mot de passe obligatoire !</p>
+                 placeholder='Ancien mot de passe'  />
+
         </div>
       </div>
 

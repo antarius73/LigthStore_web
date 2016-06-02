@@ -1,26 +1,37 @@
-'use strict';
+  'use strict';
 
-/**
- * @ngdoc function
- * @name lightStoreApp.controller:UpdatepswCtrl
- * @description
- * # UpdatepswCtrl
- * Controller of the lightStoreApp
- */
-angular.module('lightStoreApp')
-  .controller('UpdatepswCtrl', function ($scope) {
+  /**
+   * @ngdoc function
+   * @name lightStoreApp.controller:UpdatepswCtrl
+   * @description
+   * # UpdatepswCtrl
+   * Controller of the lightStoreApp
+   */
+  angular.module('lightStoreApp')
+    .controller('UpdatepswCtrl', function ($scope,$rootScope, operatorService, $location) {
 
 
-    $scope.updatePsw = function(credential){
+      $scope.updatePsw = function(credential){
 
-      console.log("old one:"+credential.oldPsw+" new one:"+credential.newPsw)
+        console.log("old one:"+credential.oldPsw+" new one:"+credential.newPsw)
 
-      // connection à l'api
+            // connection à l'api
+        operatorService.SetPsw($rootScope.globals.currentUser.userid, credential.oldPsw, credential.newPsw, function (response) {
+          if (response.success) {
 
-      // recuperation de la reponse
+              $location.path('/login');
 
-      // redirection de l'utilisateur
+          } else {
+            $scope.error = response.message;
+            $scope.dataLoading = false;
+          }
+        });
+      };
 
-    }
+        // recuperation de la reponse
 
-  });
+        // redirection de l'utilisateur
+
+
+
+    });

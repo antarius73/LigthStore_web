@@ -31,16 +31,32 @@ angular.module('lightStoreApp')
       $scope.dataLoading = true;
       AuthenticationService.Login($scope.username, $scope.password, function (response) {
         if (response.success) {
-          AuthenticationService.SetCredentials($scope.username, $scope.password);
 
-          var pswDefined = AuthenticationService.SpotFirstConnection();
+          // recuperer l'id
+          console.log("id:"+response.Id);
+          AuthenticationService.SetCredentials($scope.username, $scope.password, response.Id);
 
-          if(pswDefined){
-            $location.path('/profil');
-          }
-          else{
-            $location.path('/updatepsw');
-          }
+          var pswDefined = AuthenticationService.SpotFirstConnection(function (response) {
+            if (response.success) {
+
+
+              if(response.IsPasswordDefined){
+                $location.path('/profil');
+              }
+              else{
+                $location.path('/updatepsw');
+              }
+
+            }
+            else {
+              $scope.error = response.message;
+              $scope.dataLoading = false;
+            }
+
+          });
+
+
+
 
 
         } else {
