@@ -43,7 +43,6 @@ angular.module('lightStoreApp')
           });
         };
 
-
         service.SpotFirstConnection= function(callback){
 
           var req = {
@@ -73,6 +72,35 @@ angular.module('lightStoreApp')
             console.log("error code : "+error.data.ErrorCode+" message"+error.data.ErrorMessage);
 
 
+          });
+
+        }
+
+        service.ValidateCaptcha= function(publicKey, response, callback){
+
+          var req = {
+            method: 'POST',
+            url: WCF_URL_BASE + '/Login/captcha',
+            headers: {'Content-Type': 'application/json'},
+            data: JSON.stringify({response: response, key: publicKey})
+          };
+
+          console.log("pub key : "+publicKey);
+
+          console.log("json : "+JSON.stringify({response: response, key: publicKey}));
+
+
+          $http(req).then(function (data) {
+
+            if (data.data.success == true) {
+                  console.log("captcha ok");
+              callback({success: true});
+            } else {
+                 console.log("captcha ko"+ "error "+JSON.stringify(data.data, null, 4));
+              callback({success: false });
+            }
+          }, function (error) {
+            console.log("error code : "+error.data.ErrorCode+" message"+error.data.ErrorMessage);
           });
 
         }
