@@ -44,10 +44,7 @@
               <li ng-class="{active: isActive('/')}"><a href="#/">Home</a></li>
               <li ng-class="{active: isActive('/login')}"><a ng-href="#/login">login</a></li>
               <li ng-class="{active: isActive('/profil')}"><a ng-href="#/login">profil</a></li>
-              <li>
-                <a  ng-controller="LoginCtrl" ng-click="Logout()"
-                        ng-show="isNotLogin()">Logout</a>
-              </li>
+              <li><a  ng-controller="LoginCtrl" ng-click="Logout()" ng-href="#" ng-show="isNotLogin()">Logout</a></li>
             </ul>
           </div>
         </div>

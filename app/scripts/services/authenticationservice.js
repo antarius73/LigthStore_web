@@ -19,7 +19,7 @@ angular.module('lightStoreApp')
 
           var req = {
             method: 'PUT',
-            url: WCF_URL_BASE + '/Login/log/',
+            url: WCF_URL_BASE + '/Login/log',
             headers: {'Content-Type': 'application/json'},
             data: JSON.stringify({Login: username, Password: password})
           };
@@ -47,7 +47,7 @@ angular.module('lightStoreApp')
 
           var req = {
             method: 'PUT',
-            url: WCF_URL_BASE + '/Login/info/',
+            url: WCF_URL_BASE + '/Login/info',
             headers: {'Content-Type': 'application/json'},
             data: JSON.stringify({Login: $rootScope.globals.currentUser.username})
           };

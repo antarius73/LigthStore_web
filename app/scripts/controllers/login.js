@@ -76,10 +76,10 @@ angular.module('lightStoreApp')
       key: '6LdlACITAAAAAIwoQtBvDekt9jZ9X49eLxo7FAQ9'
     };
     $scope.setResponse = function (response) {
-      console.info('Response available'+response);
+      //console.info('Response available'+response);
       $scope.response = response;
 
-
+      /*
       AuthenticationService.ValidateCaptcha($scope.model.key, response, function (response) {
         if (response.success) {
           console.log("ctrl captcha ok");
@@ -88,6 +88,7 @@ angular.module('lightStoreApp')
           console.log("ctrl captcha ko"+response.success+ "error");
         }
       });
+      */
 
 
     };
