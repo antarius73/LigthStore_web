@@ -95,10 +95,10 @@ angular.module('lightStoreApp')
             id:"Id",
             fields: {
               Id: {type: "number"},
-              Login: {type: "string"},
-              FirstName: {type: "string"},
-              LastName: {type: "string"},
-              Email: {type: "string"}
+              Login: {type: "string", validation: { required: true}},
+              FirstName: {type: "string", validation: { required: true}},
+              LastName: {type: "string", validation: { required: true}},
+              Email: {type: "email", validation: { required: true}}
             }
           }
         },
@@ -113,7 +113,7 @@ angular.module('lightStoreApp')
         {field:'Login',title: 'Login' , width:'120px' , type:'string'},
         {
           field:'FirstName',
-          title: 'firstname' ,
+          title: 'Prénom' ,
           width:'120px',
           type:'string',
           filterable:{
@@ -121,7 +121,7 @@ angular.module('lightStoreApp')
           }
         },
 
-        {field:'LastName',title: 'LastName' , width:'120px' , type:'string'},
+        {field:'LastName',title: 'Nom' , width:'120px' , type:'string'},
 
         {field:'Email',title: 'Email' , width:'120px' , type:'string'},
 
