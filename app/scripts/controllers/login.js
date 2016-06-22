@@ -41,7 +41,7 @@ angular.module('lightStoreApp')
 
 
               if(response.IsPasswordDefined){
-                $location.path('/profil');
+                $location.path('/');
               }
               else{
                 $location.path('/updatepsw');

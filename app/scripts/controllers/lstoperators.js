@@ -22,16 +22,16 @@ angular.module('lightStoreApp')
         transport: {
           read:
             function(e){
-              console.log("read");
+              console.log("read attemps");
 
               operatorService.GetAllOperators(function (response) {
                 if (response.success) {
 
-                  console.log("ok");
+                  console.log("ok read");
                   e.success(response.operators);
 
                 } else {
-                  console.log("ko");
+                  console.log("ko read");
                   $scope.error = response.message;
                   $scope.dataLoading = false;
                 }
@@ -40,21 +40,51 @@ angular.module('lightStoreApp')
             },
           update:
             function(e){
-              console.log("update");
+              console.log("update attemps");
+
+              operatorService.SetOperatorInfos(e.data ,function (response) {
+                if (response.success) {
+                  console.log("ok update");
+                  e.success();
+                } else {
+                  console.log("ko update");
+                  $scope.error = response.message;
+                  $scope.dataLoading = false;
+                }
+              });
 
 
             },
           create:
             function(e){
-              console.log("create");
+              console.log("create attemps");
 
 
-
+              operatorService.CreateOperator(e.data ,function (response) {
+                if (response.success) {
+                  console.log("ok create");
+                  e.success();
+                } else {
+                  console.log("ko create");
+                  $scope.error = response.message;
+                  $scope.dataLoading = false;
+                }
+              });
 
             },
           destroy: function (e) {
             console.log("destroy");
 
+            operatorService.DeleteOperator(e.data.Id ,function (response) {
+              if (response.success) {
+                console.log("ok destroy");
+                e.success();
+              } else {
+                console.log("ko destroy");
+                $scope.error = response.message;
+                $scope.dataLoading = false;
+              }
+            });
 
           },
 
@@ -64,8 +94,8 @@ angular.module('lightStoreApp')
           model: {
             id:"Id",
             fields: {
-              Id: {type: "number", editable:false},
-              Login: {type: "string", editable:false},
+              Id: {type: "number"},
+              Login: {type: "string"},
               FirstName: {type: "string"},
               LastName: {type: "string"},
               Email: {type: "string"}
@@ -79,12 +109,7 @@ angular.module('lightStoreApp')
         serverSorting: false
       },
       columns: [
-        {
-          field:'Id',
-          title: 'Id',
-          width:'70px'
 
-        },
         {field:'Login',title: 'Login' , width:'120px' , type:'string'},
         {
           field:'FirstName',

@@ -88,6 +88,81 @@ angular.module('lightStoreApp')
           });
         };
 
+        service.SetOperatorInfos = function (infos, callback) {
+
+          var req = {
+            method: 'PUT',
+            url: WCF_URL_BASE + '/operators/'+ infos.Id,
+            headers: {'Content-Type': 'application/json','Authorization': 'Basic ' + $rootScope.globals.currentUser.authdata},
+            data: JSON.stringify({Email: infos.Email, FirstName: infos.FirstName, LastName: infos.LastName})
+
+          };
+
+          $http(req).then(function (data) {
+            if (data !== null) {
+              callback({success: true});
+            } else {
+              callback({success: false, message: 'impossible de modifier les infos'});
+            }
+          }, function (error) {
+            console.log("error code : "+error.data.ErrorCode+" message"+error.data.ErrorMessage);
+
+            var message = error.data.ErrorCode;
+
+            callback({success: false, message: message});
+          });
+        };
+
+        service.CreateOperator = function (infos, callback) {
+
+          var req = {
+            method: 'POST',
+            url: WCF_URL_BASE + '/operators',
+            headers: {'Content-Type': 'application/json','Authorization': 'Basic ' + $rootScope.globals.currentUser.authdata},
+            data: JSON.stringify({Login: infos.Login, Email: infos.Email, FirstName: infos.FirstName, LastName: infos.LastName})
+
+          };
+
+          $http(req).then(function (data) {
+            if (data !== null) {
+              callback({success: true});
+            } else {
+              callback({success: false, message: "impossible de créer l'operateur"});
+            }
+          }, function (error) {
+            console.log("error code : "+error.data.ErrorCode+" message"+error.data.ErrorMessage);
+
+            var message = error.data.ErrorCode;
+
+            callback({success: false, message: message});
+          });
+        };
+
+        service.DeleteOperator = function (id, callback) {
+
+          var req = {
+            method: 'DELETE',
+            url: WCF_URL_BASE + '/operators/'+id,
+            headers: {'Content-Type': 'application/json','Authorization': 'Basic ' + $rootScope.globals.currentUser.authdata},
+
+
+          };
+
+          $http(req).then(function (data) {
+            if (data !== null) {
+              callback({success: true});
+            } else {
+              callback({success: false, message: "impossible de supprimer l'operateur"});
+            }
+          }, function (error) {
+            console.log("error code : "+error.data.ErrorCode+" message"+error.data.ErrorMessage);
+
+            var message = error.data.ErrorCode;
+
+            callback({success: false, message: message});
+          });
+        };
+
         service.GetAllOperators = function (callback) {
 
           var req = {
