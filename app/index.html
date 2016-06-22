@@ -42,8 +42,9 @@
 
             <ul class="nav navbar-nav">
               <li ng-class="{active: isActive('/')}"><a href="#/">Home</a></li>
+              <li ng-class="{active: isActive('/lstOperators')}"><a ng-href="#/lstOperators">Operators</a></li>
+              <li ng-class="{active: isActive('/profil')}"><a ng-href="#/profil">Current profil</a></li>
               <li ng-class="{active: isActive('/login')}"><a ng-href="#/login">login</a></li>
-              <li ng-class="{active: isActive('/profil')}"><a ng-href="#/login">profil</a></li>
               <li><a  ng-controller="LoginCtrl" ng-click="Logout()" ng-href="#" ng-show="isNotLogin()">Logout</a></li>
             </ul>
           </div>
@@ -57,7 +58,7 @@
 
     <div class="footer">
       <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+        <p><span class="glyphicon glyphicon-book"></span> from Tesfri team</p>
       </div>
     </div>
 
@@ -109,6 +110,7 @@
         <script src="scripts/controllers/updatepsw.js"></script>
         <script src="scripts/services/operatorservice.js"></script>
         <script src="scripts/directives/compareto.js"></script>
+        <script src="scripts/controllers/lstoperators.js"></script>
         <!-- endbuild -->
 </body>
 </html>

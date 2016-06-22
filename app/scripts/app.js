@@ -51,6 +51,11 @@ angular
         controller: 'UpdatepswCtrl',
         controllerAs: 'updatepsw'
       })
+      .when('/lstOperators', {
+        templateUrl: 'views/lstoperators.html',
+        controller: 'LstoperatorsCtrl',
+        controllerAs: 'lstOperators'
+      })
       .otherwise({
         redirectTo: '/'
       });
