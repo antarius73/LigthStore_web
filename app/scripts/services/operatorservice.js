@@ -19,7 +19,7 @@ angular.module('lightStoreApp')
 
           var req = {
             method: 'PATCH',
-            url: WCF_URL_BASE + '/operators/'+id+"/",
+            url: WCF_URL_BASE + '/operators/'+id,
             headers: {'Content-Type': 'application/json','Authorization': 'Basic ' + $rootScope.globals.currentUser.authdata},
             data: JSON.stringify({Password: oldPsw, NewPassword: newPsw})
           };
@@ -39,12 +39,11 @@ angular.module('lightStoreApp')
           });
         };
 
-
         service.GetCurrentInfos = function (callback) {
 
           var req = {
             method: 'GET',
-            url: WCF_URL_BASE + '/operators/'+ $rootScope.globals.currentUser.userid+"/",
+            url: WCF_URL_BASE + '/operators/'+ $rootScope.globals.currentUser.userid,
             headers: {'Content-Type': 'application/json','Authorization': 'Basic ' + $rootScope.globals.currentUser.authdata}
 
           };
@@ -68,7 +67,7 @@ angular.module('lightStoreApp')
 
           var req = {
             method: 'PUT',
-            url: WCF_URL_BASE + '/operators/'+ $rootScope.globals.currentUser.userid+"/",
+            url: WCF_URL_BASE + '/operators/'+ $rootScope.globals.currentUser.userid,
             headers: {'Content-Type': 'application/json','Authorization': 'Basic ' + $rootScope.globals.currentUser.authdata},
             data: JSON.stringify({Email: infos.Email, FirstName: infos.FirstName, LastName: infos.LastName})
 
@@ -79,6 +78,30 @@ angular.module('lightStoreApp')
               callback({success: true});
             } else {
               callback({success: false, message: 'impossible de charger les infos'});
+            }
+          }, function (error) {
+            console.log("error code : "+error.data.ErrorCode+" message"+error.data.ErrorMessage);
+
+            var message = error.data.ErrorCode;
+
+            callback({success: false, message: message});
+          });
+        };
+
+        service.GetAllOperators = function (callback) {
+
+          var req = {
+            method: 'GET',
+            url: WCF_URL_BASE + '/operators',
+            headers: {'Content-Type': 'application/json','Authorization': 'Basic ' + $rootScope.globals.currentUser.authdata}
+
+          };
+
+          $http(req).then(function (data) {
+            if (data !== null) {
+              callback({success: true, operators : data.data});
+            } else {
+              callback({success: false, message: 'impossible de charger les operators'});
             }
           }, function (error) {
             console.log("error code : "+error.data.ErrorCode+" message"+error.data.ErrorMessage);
