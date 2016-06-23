@@ -56,6 +56,11 @@ angular
         controller: 'LstoperatorsCtrl',
         controllerAs: 'lstOperators'
       })
+      .when('/lstProducts', {
+        templateUrl: 'views/lstproducts.html',
+        controller: 'LstproductsCtrl',
+        controllerAs: 'lstProducts'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -2,27 +2,18 @@
 
 /**
  * @ngdoc function
- * @name lightStoreApp.controller:LstoperatorsCtrl
+ * @name lightStoreApp.controller:LstproductsCtrl
  * @description
- * # LstoperatorsCtrl
+ * # LstproductsCtrl
  * Controller of the lightStoreApp
  */
 angular.module('lightStoreApp')
-  .controller('LstoperatorsCtrl', function ($scope, operatorService) {
+  .controller('LstproductsCtrl', function ($scope, productService) {
 
 
-    $scope.OperatorsGridOptions = {
+    $scope.ProductsGridOptions = {
       editable:"popup",
-      edit: function (e) {
-        console.log("edit");
-        // neutraliser l'edition du login en dehor du cas de creation
-        var loginInput = e.container.find("input[name=Login]");
 
-        if(loginInput.val() != ""){
-          loginInput.prop('disabled', true).addClass("k-state-disabled");
-        }
-
-      },
       dataSource: {
 
         transport: {
@@ -30,7 +21,7 @@ angular.module('lightStoreApp')
             function(e){
               console.log("read attemps");
 
-              operatorService.GetAllOperators(function (response) {
+              productService.GetAllProducts(function (response) {
                 if (response.success) {
 
                   console.log("ok read");
@@ -48,7 +39,7 @@ angular.module('lightStoreApp')
             function(e){
               console.log("update attemps");
 
-              operatorService.SetOperatorInfos(e.data ,function (response) {
+              productService.SetProductInfos(e.data ,function (response) {
                 if (response.success) {
                   console.log("ok update");
                   e.success();
@@ -66,7 +57,7 @@ angular.module('lightStoreApp')
               console.log("create attemps");
 
 
-              operatorService.CreateOperator(e.data ,function (response) {
+              productService.CreateProduct(e.data ,function (response) {
                 if (response.success) {
                   console.log("ok create");
                   e.success();
@@ -81,7 +72,7 @@ angular.module('lightStoreApp')
           destroy: function (e) {
             console.log("destroy");
 
-            operatorService.DeleteOperator(e.data.Id ,function (response) {
+             productService.DeleteProduct(e.data.Id ,function (response) {
               if (response.success) {
                 console.log("ok destroy");
                 e.success();
@@ -101,10 +92,12 @@ angular.module('lightStoreApp')
             id:"Id",
             fields: {
               Id: {type: "number"},
-              Login: {type: "string", validation: { required: true}},
-              FirstName: {type: "string", validation: { required: true}},
-              LastName: {type: "string", validation: { required: true}},
-              Email: {type: "email", validation: { required: true}}
+              Code: {type: "string", validation: { required: true}},
+              GTIN: {type: "string", validation: { required: true}},
+              Label: {type: "string", validation: { required: true}},
+              Tare: {type: "number", validation: { required: true}},
+              Unity: {type: "string", validation: { required: true}},
+              Weight: {type: "number", validation: { required: true}},
             }
           }
         },
@@ -116,20 +109,12 @@ angular.module('lightStoreApp')
       },
       columns: [
 
-        {field:'Login',title: 'Login' , width:'120px' , type:'string'},
-        {
-          field:'FirstName',
-          title: 'Prénom' ,
-          width:'120px',
-          type:'string',
-          filterable:{
-            cell:{operator:"contains"}
-          }
-        },
-
-        {field:'LastName',title: 'Nom' , width:'120px' , type:'string'},
-
-        {field:'Email',title: 'Email' , width:'120px' , type:'string'},
+        {field:'Code',title: 'Code' , width:'120px' , type:'string'},
+        {field:'GTIN', title: 'GTIN' , width:'120px', type:'string'},
+        {field:'Label',title: 'Libellé' , width:'120px' , type:'string'},
+        {field:'Tare',title: 'Tare' , width:'120px' , type:'number'},
+        {field:'Unity',title: 'Unité' , width:'120px' , type:'string'},
+        {field:'Weight',title: 'Poids' , width:'120px' , type:'number'},
 
         {command:[{name:"edit",text:""},{name:"destroy",text:""}],title:"&nbsp;", width:"200px"}],
 
@@ -145,5 +130,6 @@ angular.module('lightStoreApp')
       toolbar:["create"],
       filterable:true
     };
+
 
   });

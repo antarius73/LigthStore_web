@@ -9,9 +9,9 @@
  */
 angular.module('lightStoreApp')
 
-    .factory('operatorService', ['Base64', '$http', '$cookieStore', '$rootScope', '$timeout', 'WCF_URL_BASE',
+    .factory('operatorService', ['$http', '$rootScope', 'WCF_URL_BASE',
 
-      function (Base64, $http, $cookieStore, $rootScope, $timeout, WCF_URL_BASE) {
+      function ($http, $rootScope, WCF_URL_BASE) {
 
         var service = {};
 
