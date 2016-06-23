@@ -15,6 +15,11 @@ angular.module('lightStoreApp')
       editable:"popup",
       edit: function (e) {
         console.log("edit");
+        var loginInput = e.container.find("input[name=Login]");
+
+        if(loginInput.val() != ""){
+          loginInput.prop('disabled', true).addClass("k-state-disabled");
+        }
 
       },
       dataSource: {
