@@ -107,6 +107,9 @@ angular.module('lightStoreApp')
         serverFiltering: false,
         serverSorting: false
       },
+
+
+
       columns: [
 
         {field:'Code',title: 'Code' , width:'120px' , type:'string'},
@@ -184,15 +187,20 @@ angular.module('lightStoreApp')
             model: {
               id:"Id",
               fields: {
-                Id: {type: "number"},
-                FromId: {type: "number"},
+                Id: {type: "number", editable:false},
+                FromId: {type: "number", editable:false},
                 FromLbl: {type: "string", validation: { required: false}},
+                Une: {type: "string", validation: { required: false}},
                 Unity: {type: "string", validation: { required: true}},
                 Quantity: {type: "number", validation: { required: true}},
                 BaseUnitQ: {type: "number", validation: { required: true}},
-                BaseUnitTotal: {type: "number", validation: { required: true}},
+                BaseUnitTotal: {type: "number", validation: { required: true}, editable:false},
               }
             }
+          },
+          group :{
+            field : "BaseUnitQ"
+
           },
 
           batch:false,
@@ -200,14 +208,32 @@ angular.module('lightStoreApp')
           serverFiltering: false,
           serverSorting: false
         },
+
+        edit: function (e)  {
+          //======================================================
+          // Code to look for `hideMe` attribute on a column.
+          //======================================================
+          e.sender.columns.forEach(function (element, index /*, array */) {
+            if (element.hideMe) {
+              e.container.find(".k-edit-label:eq(" + index + "), "
+                + ".k-edit-field:eq( " + index + ")"
+              ).hide();
+            }
+          });
+          //======================================================
+          // End column hiding code
+          //======================================================
+        },
+
         columns: [
           //{field:'Id',title: 'Id' , width:'120px' , type:'number'},
           //{field:'FromId',title: 'FromId' , width:'120px' , type:'number'},
-          {field:'Unity', title: 'Unité' , width:'120px', type:'string'},
-          {field:'Quantity',title: 'Quantité' , width:'120px' , type:'number'},
-          {field:'FromLbl',title: 'Unité de base' , width:'120px' , type:'string'},
-          {field:'BaseUnitQ',title: 'PCB' , width:'120px' , type:'number'},
-          {field:'BaseUnitTotal',title: 'Eq. unité base' , width:'120px' , type:'number'},
+          {template:"#= '1 '+ Unity + ' = '+  Quantity +' '+ FromLbl #", title: '' , width:'200px', type:'string', hideMe:true},
+          {field:'Unity', title: 'Unité' , width:'120px', type:'string', hidden: true},
+          {field:'Quantity',title: 'Quantité' , width:'120px' , type:'number', hidden: true},
+          {field:'FromLbl',title: 'Unité de base' , width:'120px' , type:'string', hidden: true},
+          {field:'BaseUnitQ',title: 'PCB' , width:'120px' , type:'number', hidden: true, hideMe:true},
+          {field:'BaseUnitTotal',title: 'Eq. unité base' , width:'120px' , type:'number', hideMe:true},
           {command:[{name:"edit",text:""},{name:"destroy",text:""}],title:"&nbsp;", width:"200px"}],
 
         sortable: true,

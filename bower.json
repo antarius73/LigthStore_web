@@ -22,7 +22,6 @@
     "bootstrap": {
       "main": [
         "less/bootstrap.less",
-        "dist/css/bootstrap.css",
         "dist/js/bootstrap.js"
       ]
     },
@@ -32,7 +31,7 @@
         "js/cultures/kendo.culture.fr-FR.min.js",
         "js/messages/kendo.messages.fr-FR.min.js",
         "styles/kendo.common.min.css",
-        "styles/kendo.default.min.css"
+        "styles/kendo.moonlight.min.css"
       ]
     }
   },

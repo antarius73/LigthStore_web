@@ -102,7 +102,9 @@ angular.module('lightStoreApp')
       for(var i = 0; i<rootPackaging.length;i++){
         rootPackaging[i].BaseUnitQ = rootPackaging[i].Quantity;
         rootPackaging[i].BaseUnitTotal = rootPackaging[i].Quantity;
-        rootPackaging[i].FromLbl = baseUnitLbl;
+        rootPackaging[i].FromLbl = UniteLblToFr(baseUnitLbl);
+        rootPackaging[i].Unity = UniteLblToFr(rootPackaging[i].Unity);
+        rootPackaging[i].Une = "1";
         CompleteChildrenPackagingInfo(packageData, rootPackaging[i].BaseUnitTotal, rootPackaging[i].BaseUnitQ, rootPackaging[i].Id,  rootPackaging[i].Unity );
       }
       return packageData;
@@ -115,9 +117,24 @@ angular.module('lightStoreApp')
       else{
         childPackaging[0].BaseUnitQ = BaseUnitQ;
         childPackaging[0].BaseUnitTotal = BaseUnitTotal * childPackaging[0].Quantity;
-        childPackaging[0].FromLbl = parentUnitLbl;
+        childPackaging[0].FromLbl = UniteLblToFr(parentUnitLbl);
+        childPackaging[0].Unity = UniteLblToFr(childPackaging[0].Unity);
+        childPackaging[0].Une = "1";
         CompleteChildrenPackagingInfo(packageData, childPackaging[0].BaseUnitTotal, BaseUnitQ,  childPackaging[0].Id,  childPackaging[0].Unity);
       }
+    }
+
+    function UniteLblToFr(unit){
+      switch (unit){
+        case "CSU":  return "UVC";
+        case "CASE":  return "colis";
+        case "LAYER":  return "couche";
+        case "PALETT":  return "palette";
+        default : return unit;
+
+      }
+
+
     }
 
 
