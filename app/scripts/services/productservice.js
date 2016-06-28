@@ -102,7 +102,7 @@ angular.module('lightStoreApp')
 
       $http(req).then(function (data) {
         if (data !== null) {
-          callback({success: true, operators : data.data});
+          callback({success: true, operators : addProductInfos(data.data)});
         } else {
           callback({success: false, message: 'impossible de charger les produits'});
         }
@@ -116,6 +116,27 @@ angular.module('lightStoreApp')
     };
 
 
+    function addProductInfos(data){
+
+
+      for(var i = 0; i<data.length;i++) {
+        data[i].Unity = UniteLblToFr(data[i].Unity);
+      }
+
+        return data;
+    }
+
+
+    function UniteLblToFr(unit) {
+      switch (unit) {
+        case "CSU":
+          return "UVC";
+
+        default :
+          return unit;
+
+      }
+    }
     return service;
   }
 ]);

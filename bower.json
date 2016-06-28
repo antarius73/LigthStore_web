@@ -22,6 +22,7 @@
     "bootstrap": {
       "main": [
         "less/bootstrap.less",
+        "dist/css/slate.css",
         "dist/js/bootstrap.js"
       ]
     },

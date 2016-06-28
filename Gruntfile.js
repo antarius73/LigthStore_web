@@ -391,7 +391,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: 'bower_components/kendo-ui/styles',
           dest: '<%= yeoman.dist %>/styles/',
-          src: 'Default/*'
+          src: 'Moonlight/*'
         }, {
           expand: true,
           cwd: 'bower_components/bootstrap/dist',
