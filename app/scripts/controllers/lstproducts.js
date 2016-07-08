@@ -8,8 +8,11 @@
  * Controller of the lightStoreApp
  */
 angular.module('lightStoreApp')
-  .controller('LstproductsCtrl', function ($scope, productService, packagingService) {
+  .controller('LstproductsCtrl', function ($scope,$window, productService, packagingService) {
 
+    $scope.Quit = function(){
+      $window.close();
+    }
 
     $scope.ProductsGridOptions = {
       editable:"popup",

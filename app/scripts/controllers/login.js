@@ -8,11 +8,17 @@
  * Controller of the lightStoreApp
  */
 angular.module('lightStoreApp')
-  .controller('LoginCtrl', function ($scope, $rootScope, $location, $cookieStore, AuthenticationService) {
+  .controller('LoginCtrl', function ($scope, $window, $rootScope, $location, $cookieStore, AuthenticationService) {
 
     $scope.Logout = function () {
       AuthenticationService.ClearCredentials();
       $location.path('/');
+    };
+
+    $scope.Quit = function () {
+     // $window.close();
+      // pour chrome fermer le mode kiosk grace a l'extension chrome "close kiosk"
+      $location.path('closekiosk');
     };
 
     $scope.isNotLogin = function () {

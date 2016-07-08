@@ -129,7 +129,7 @@ angular.module('lightStoreApp')
 
         {field:'LastName',title: 'Nom' , width:'120px' , type:'string'},
 
-        {field:'Email',title: 'Email' , width:'120px' , type:'string'},
+        {field:'Email',title: 'Email' , width:'120px' , type:'string', minScreenWidth:500},
 
         {command:[{name:"edit",text:""},{name:"destroy",text:""}],title:"&nbsp;", width:"200px"}],
 
