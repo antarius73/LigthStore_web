@@ -1,18 +1,22 @@
 
 <div ng-show="error" class="alert alert-danger">{{error}}</div>
-<form name="form" ng-submit="loginUser()" role="form">
+<form name="form" ng-submit="loginUser()" role="form"  class="form-horizontal" >
   <div class="form-group">
-    <label for="username">Utilisateur</label>
-    <i class="fa fa-key"></i>
+    <label for="username" class="col-sm-6 control-label">Utilisateur</label>
+    <div class="col-sm-6">
     <input type="text" name="username" id="username" class="form-control" ng-model="username" required/>
     <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">l'utilisateur est obligatoire</span>
   </div>
-  <div class="form-group">
-    <label for="password">Mot de passe</label>
-    <i class="fa fa-lock"></i>
-    <input type="password" name="password" id="password" class="form-control" ng-model="password"/>
   </div>
+  <div class="form-group">
 
+    <label for="password"  class="col-sm-6 control-label" style="white-space: nowrap">Mot de passe</label>
+    <div class="col-sm-6">
+
+      <input type="password" name="password" id="password" class="form-control" ng-model="password"/>
+    </div>
+  </div>
+<!--
   <div
     vc-recaptcha
     theme="'dark'"
@@ -22,6 +26,7 @@
     on-expire="cbExpiration()"
   ></div>
 <br>
+-->
   <div class="form-actions">
     <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger" style="margin-bottom: 10px">Login</button>
     <img ng-if="dataLoading"

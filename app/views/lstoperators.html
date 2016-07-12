@@ -1,1 +1,16 @@
-<div kendo-grid k-options="OperatorsGridOptions" style="height: 600px; width: 900px; margin-left: -130px"></div>
+<div kendo-grid id="operatorsGrid" k-options="OperatorsGridOptions" class="grid-height"></div>
+
+
+<div kendo-window="window" k-visible="false" k-modal="true">
+
+</div>
+
+
+<script type="text/x-kendo-template" id="windowTemplate">
+
+  <div class="modalWindow">
+  Supprimer <strong>#= Login #</strong> ? </p>
+  <button class="k-button" id="yesButton">Oui</button>
+  <button class="k-button" id="noButton"> Non</button>
+  </div>
+</script>

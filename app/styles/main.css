@@ -129,7 +129,7 @@ body {
 
   body{
     overflow: hidden;
-    font-size: 12px;
+    font-size: 10px;
   }
 
   div.form-group >div{
@@ -146,13 +146,35 @@ body {
   }
 
   .form-control{
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .btn{
-    font-size: 12px;
+    font-size: 10px;
   }
 
+  .grid-height{
+    height: 250px;
+  }
+
+  .k-grid tbody .k-button, .k-ie8 .k-grid tbody button.k-button {
+    min-width: 16px;
+  }
+
+  .k-button-icontext .k-icon, .k-button-icontext .k-image, .k-button-icontext .k-sprite {
+
+     margin-right: 0px;
+     margin-right: 0rem;
+     margin-left: 0px;
+     margin-left: 0rem;
+  }
+
+}
+
+
+.modalWindow{
+  text-align: center;
+  width: 220px;
 }
 
 

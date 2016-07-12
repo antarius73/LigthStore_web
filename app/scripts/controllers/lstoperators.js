@@ -11,6 +11,9 @@ angular.module('lightStoreApp')
   .controller('LstoperatorsCtrl', function ($scope, operatorService) {
 
 
+
+
+
     $scope.OperatorsGridOptions = {
       editable:"popup",
       edit: function (e) {
@@ -116,22 +119,50 @@ angular.module('lightStoreApp')
       },
       columns: [
 
-        {field:'Login',title: 'Login' , width:'120px' , type:'string'},
+        {field:'Login',title: 'Login'  , type:'string', width:"20%"},
         {
           field:'FirstName',
           title: 'Prénom' ,
-          width:'120px',
+          width:"15%",
           type:'string',
+          minScreenWidth:468,
           filterable:{
             cell:{operator:"contains"}
           }
         },
 
-        {field:'LastName',title: 'Nom' , width:'120px' , type:'string'},
+        {field:'LastName',title: 'Nom'  , type:'string', minScreenWidth:568, width:"15%"},
 
-        {field:'Email',title: 'Email' , width:'120px' , type:'string', minScreenWidth:500},
+        {field:'Email',title: 'Email' , type:'string', minScreenWidth:668, width:"20%"},
 
-        {command:[{name:"edit",text:""},{name:"destroy",text:""}],title:"&nbsp;", width:"200px"}],
+        {command:[
+          {name:"edit",text:""},
+          {name:"Delete", imageClass :"k-icon k-i-close", text:"",click: function(e){  //add a click event listener on the delete button
+
+
+            var windowTemplate = kendo.template($("#windowTemplate").html());
+            var operatorsGrid = $("#operatorsGrid").data('kendoGrid');
+
+
+            e.preventDefault(); //prevent page scroll reset
+            var tr = $(e.target).closest("tr"); //get the row for deletion
+            var data = this.dataItem(tr); //get the row data so it can be referred later
+            var delWindowConf = $scope.window;
+            delWindowConf.title("Confirmez vous ?");
+            delWindowConf.content(windowTemplate(data)); //send the row data object to the template and render it
+            delWindowConf.center().open();
+
+            $("#yesButton").click(function(){
+              operatorsGrid.dataSource.remove(data)  //prepare a "destroy" request
+              operatorsGrid.dataSource.sync()  //actually send the request (might be ommited if the autoSync option is enabled in the dataSource)
+              delWindowConf.close();
+            })
+            $("#noButton").click(function(){
+              delWindowConf.close();
+            })
+          }        }],
+          title:"&nbsp;", width:"30%"}],
+
 
       sortable: true,
       pageable:{
