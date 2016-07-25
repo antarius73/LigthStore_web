@@ -46,6 +46,8 @@
               <li ng-class="{active: isActive('/')}"><a href="#/" data-toggle="collapse" data-target="#js-navbar-collapse">Index</a></li>
               <li ng-class="{active: isActive('/lstOperators')}"><a ng-href="#/lstOperators"  data-toggle="collapse" data-target="#js-navbar-collapse">Operateurs</a></li>
               <li ng-class="{active: isActive('/lstProducts')}"><a ng-href="#/lstProducts"  data-toggle="collapse" data-target="#js-navbar-collapse">Produits</a></li>
+              <li ng-class="{active: isActive('/scanProduct')}"><a ng-href="#/scanProduct"  data-toggle="collapse" data-target="#js-navbar-collapse">Scan</a></li>
+
               <li ng-class="{active: isActive('/profil')}"><a ng-href="#/profil"  data-toggle="collapse" data-target="#js-navbar-collapse">Profil courant</a></li>
               <li ng-class="{active: isActive('/login')}"><a ng-href="#/login"  data-toggle="collapse" data-target="#js-navbar-collapse">Connexion</a></li>
               <li><a  ng-controller="LoginCtrl" ng-click="Logout()" ng-href="#"   data-toggle="collapse" data-target="#js-navbar-collapse" ng-show="isNotLogin()">Déconnexion</a></li>
@@ -119,6 +121,7 @@
         <script src="scripts/controllers/lstproducts.js"></script>
         <script src="scripts/services/productservice.js"></script>
         <script src="scripts/services/packagingservice.js"></script>
+        <script src="scripts/controllers/scanproduct.js"></script>
         <!-- endbuild -->
 </body>
 </html>

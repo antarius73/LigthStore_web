@@ -84,7 +84,7 @@ body {
 
 @media (max-width: 768px){
   .btn, .btn-group{
-    width:100%;
+    width:97%;
 
   }
 
@@ -157,18 +157,15 @@ body {
     height: 250px;
   }
 
-  .k-grid tbody .k-button, .k-ie8 .k-grid tbody button.k-button {
-    min-width: 16px;
+
+
+
+
+
+  .k-edit-form-container {
+    position: relative;
+    width: 220px;
   }
-
-  .k-button-icontext .k-icon, .k-button-icontext .k-image, .k-button-icontext .k-sprite {
-
-     margin-right: 0px;
-     margin-right: 0rem;
-     margin-left: 0px;
-     margin-left: 0rem;
-  }
-
 }
 
 
@@ -176,6 +173,14 @@ body {
   text-align: center;
   width: 220px;
 }
+.k-button-icontext .k-icon, .k-button-icontext .k-image, .k-button-icontext .k-sprite {
 
-
+  margin-right: 0px;
+  margin-right: 0rem;
+  margin-left: 0px;
+  margin-left: 0rem;
+}
+.k-grid tbody .k-button, .k-ie8 .k-grid tbody button.k-button {
+  min-width: 16px;
+}
 

@@ -123,7 +123,7 @@ angular.module('lightStoreApp')
         {
           field:'FirstName',
           title: 'Prénom' ,
-          width:"15%",
+          width:"20%",
           type:'string',
           minScreenWidth:468,
           filterable:{
@@ -131,7 +131,7 @@ angular.module('lightStoreApp')
           }
         },
 
-        {field:'LastName',title: 'Nom'  , type:'string', minScreenWidth:568, width:"15%"},
+        {field:'LastName',title: 'Nom'  , type:'string', minScreenWidth:568, width:"20%"},
 
         {field:'Email',title: 'Email' , type:'string', minScreenWidth:668, width:"20%"},
 
@@ -161,7 +161,7 @@ angular.module('lightStoreApp')
               delWindowConf.close();
             })
           }        }],
-          title:"&nbsp;", width:"30%"}],
+          title:"&nbsp;", width:"20%"}],
 
 
       sortable: true,

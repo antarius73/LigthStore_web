@@ -116,6 +116,32 @@ angular.module('lightStoreApp')
     };
 
 
+    service.GetProductFromCab = function (callback, cab) {
+
+      var req = {
+        method: 'GET',
+        url: WCF_URL_BASE + '/products?cab='+cab,
+        headers: {'Content-Type': 'application/json','Authorization': 'Basic ' + $rootScope.globals.currentUser.authdata}
+
+      };
+
+      $http(req).then(function (data) {
+        if (data !== null) {
+          callback({success: true, productInfos : data.data});
+        } else {
+          callback({success: false, message: 'impossible de charger le produits depuis le cab'});
+        }
+      }, function (error) {
+        console.log("error code : "+error.data.ErrorCode+" message"+error.data.ErrorMessage);
+
+        var message = error.data.ErrorCode;
+
+        callback({success: false, message: message});
+      });
+    };
+
+
+
     function addProductInfos(data){
 
 
