@@ -34,6 +34,7 @@ module.exports = function(config) {
       'bower_components/lodash/lodash.js',
       'bower_components/ng-password-strength/dist/scripts/ng-password-strength.js',
       'bower_components/angular-ui-validate/dist/validate.js',
+      'bower_components/angular-filter/dist/angular-filter.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

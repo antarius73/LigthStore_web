@@ -11,7 +11,7 @@
 </form>
 
 <div ng-show="productInfos">
-  <ul>
+  <ul style="padding-left: 15px">
     <li>
       <span>Code : {{productInfos.Code}}</span>
     </li>
@@ -26,8 +26,9 @@
     </li>
     <li>
       <span>Unité : {{productInfos.Unity}}</span>
-      <ul>
-        <li ng-repeat="packaging in productPackagingInfos">
+      <ul ng-repeat="(key, value) in productPackagingInfos | groupBy: 'BaseUnitQ'">
+        <span><strong>PCB {{key}}</strong></span>
+        <li ng-repeat="packaging in value">
           <span>1 {{packaging.Unity}} = {{packaging.Quantity}} {{packaging.FromLbl}}</span>
         </li>
       </ul>

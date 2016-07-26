@@ -17,7 +17,8 @@ angular
     'kendo.directives',
     'vcRecaptcha',
     'ngPasswordStrength',
-    'ui.validate'
+    'ui.validate',
+    'angular.filter'
   ])
   .constant('WCF_URL_BASE', 'https://svr-grind.tesfri.intra:8084')
   .config(['$resourceProvider', function ($resourceProvider) {
