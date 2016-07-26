@@ -8,7 +8,7 @@
  * Controller of the lightStoreApp
  */
 angular.module('lightStoreApp')
-  .controller('ScanproductCtrl', function ($scope, productService) {
+  .controller('ScanproductCtrl', function ($scope, productService, packagingService) {
 
 
 
@@ -25,7 +25,23 @@ angular.module('lightStoreApp')
           $scope.productInfos = response.productInfos;
 
 
+          packagingService.GetProductPackaging($scope.productInfos.Id, $scope.productInfos.Unity, function (response) {
+            if (response.success) {
 
+              console.log("ok read");
+              console.log(response.packaging);
+              $scope.productPackagingInfos = response.packaging;
+
+            } else {
+              console.log("ko read");
+              $scope.error = response.message;
+            }
+          });
+
+
+
+
+          $scope.productCab = null;
         } else {
           console.log("ko read");
           $scope.error = response.message;
